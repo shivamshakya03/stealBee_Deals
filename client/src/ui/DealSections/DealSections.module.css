@@ -1,0 +1,70 @@
+.dealsSection {
+  margin: 30px auto; 
+  width: 80vw;
+  box-sizing: border-box;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0px 30px 0px 0px;
+
+
+}
+
+.sectionHeader h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionHeader h2 span {
+  color: #f97316;
+}
+
+.sectionHeader button {
+  background: none;
+  border: none;
+  color: #f97316;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.sectionHeader button:hover {
+  text-decoration: underline;
+}
+
+.dealSectionIcon {
+  width: 1.5rem;
+}
+
+.productGrid {
+  display: grid;
+  gap: 20px;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: center;
+  align-items: center;
+
+
+  
+}
+
+@media (min-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1920px) {
+
+  .productGrid {
+    grid-template-columns: repeat(6, 1fr);
+    
+  }
+}

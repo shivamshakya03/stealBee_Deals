@@ -1,0 +1,16 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+:root {
+  /* Brand Colors */
+  --color-orange: #f97316;
+  --color-darknavy: #0a174e;
+  --color-text: #6b7280;
+  
+
+  
+}
