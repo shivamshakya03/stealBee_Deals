@@ -21,12 +21,11 @@ export default function Footer() {
       <div className={styles.stealbeeFlexCategories}>
         <div className={styles.stealbeeDetails}>
           <div className={styles.footerLogo}>
-            <img src="/logo-bee.jpg" alt="StealBee Logo" />
-            <p>Stealbee Deals</p>
+            <img src="/SDBlogo/Group3.png" alt="StealBee Logo" />
           </div>
 
           <div className={styles.footerDescription}>
-            Your Ultimate Destination for the best Deals on tech gadgets and
+            Your ultimate destination for the best deals on tech gadgets and
             fashion items.
           </div>
         </div>

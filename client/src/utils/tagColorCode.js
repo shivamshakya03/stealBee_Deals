@@ -45,3 +45,32 @@ export const categoryIcons = {
   top: "/hot-deal.png"
 };
 
+export const MobileHeaderCategoryIcons = {
+  topdeals: "/CategoriesIcon/TopDeals.svg", 
+  top5: "/CategoriesIcon/Top5.svg", 
+  electronics: "/CategoriesIcon/Electronics.svg",
+  fashion: "/CategoriesIcon/Fashion.svg",
+  appliances: "/CategoriesIcon/Home.svg",   
+  fitness: "/CategoriesIcon/Fitness.svg", 
+  sports: "/CategoriesIcon/Sports.svg",
+  beauty: "/CategoriesIcon/Home.svg",    //
+  toys: "/CategoriesIcon/Toys.svg",   
+  books: "/CategoriesIcon/Books.svg",
+  automotive: "/CategoriesIcon/Automotive.svg",
+  music: "/CategoriesIcon/music.svg", 
+  amazon: "/CategoriesIcon/TopDeals.svg",
+  flipkart: "/CategoriesIcon/TopDeals.svg",
+  meesho: "/CategoriesIcon/TopDeals.svg", 
+};
+export const storeLogo = {
+  amazon: "https://cdn.worldvectorlogo.com/logos/logo-amazon.svg",
+  flipkart: "https://cdn.worldvectorlogo.com/logos/flipkart.svg ",
+  ajio: "https://cdn.worldvectorlogo.com/logos/ajio.svg",
+  meesho: "/Meesho_logo.png",
+  myntra: "https://cdn.worldvectorlogo.com/logos/myntra-1.svg",
+    
+};
+
+
+   
+  

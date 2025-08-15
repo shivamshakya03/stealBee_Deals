@@ -2,6 +2,7 @@ import React from "react";
 import {
   getTagBackgroundColor,
   getTagColor,
+  storeLogo,
 } from "../../utils/tagColorCode.js";
 import styles from "./ProductCard.module.css";
 
@@ -22,8 +23,15 @@ export default function ProductCard({ product }) {
           <span className={styles.discountBadge}>
             -{product.discount_percent}%
           </span>
-          <span className={styles.storeBadge}>{product.store_name}</span>
         </div>
+
+        {/* <div className={styles.storeBadge}>
+          <img
+            src={storeLogo[product.store_name?.toLowerCase() || ""]}
+            alt={product.store_name}
+            className={styles.storeLogo}
+          />
+        </div> */}
         <div className={styles.productInfo}>
           <span
             className={styles.tag}
@@ -45,6 +53,13 @@ export default function ProductCard({ product }) {
               ₹{product.current_price}
             </span>
             <span className={styles.oldPrice}>₹{product.old_price}</span>
+            <span className={styles.discountPricePercent}>
+              (-
+              {product.discount_percent
+                ? Math.round(product.discount_percent)
+                : 0}
+              % OFF)
+            </span>
           </div>
           <p className={styles.updatedTime}>Updated 4 hours ago</p>
           <a
@@ -52,8 +67,23 @@ export default function ProductCard({ product }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div className={styles.buyBtn}>🛒 Buy Now</div>
+            <div className={styles.buyBtn}>
+              <img
+                src="/trolley.png"
+                alt="Shopping trolley"
+                className={styles.shoppingTrolleyIcon}
+              />
+              <span>Buy Now</span>
+            </div>
           </a>
+
+          {/* <div className={styles.storeBadge}>
+            <img
+              src={storeLogo[product.store_name?.toLowerCase() || ""]}
+              alt={product.store_name}
+              className={styles.storeLogo}
+            />
+          </div> */}
         </div>
       </div>
     </article>

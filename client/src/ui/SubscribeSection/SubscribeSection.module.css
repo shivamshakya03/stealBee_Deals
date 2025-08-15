@@ -1,5 +1,7 @@
 .subscribeSection {
-  background-color: #f97316; /* Tailwind's orange-500 */
+  /* background-color: #f9741665;  */
+  background-color: #FFE4B5; 
+  /* background-color: #F0E68C;  */
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -8,13 +10,19 @@
 
 .subscribeSection h2 {
   font-size: 1.5rem; /* ~text-2xl */
-  font-weight: bold;
+  font-weight: 600;
   margin: 0;
+  color: var(--color-darknavy);
+  letter-spacing: -1.5px;
+  
 }
 
 .subscribeSection p {
   margin-top: 8px;
   font-size: 1rem;
+  color: var(--color-darknavy);
+  letter-spacing: -0.5px;
+  line-height: 1.2rem;
 }
 
 .formContainer {
@@ -44,6 +52,8 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+    letter-spacing: -0.5px;
+  
 }
 
 .formContainer button:hover {

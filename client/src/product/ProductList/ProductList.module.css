@@ -1,5 +1,201 @@
 .dealsSectionHeader {
-  /* border: 1px solid red;  */
+  width: 100vw;
+}
+
+.categoryBar {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  height: 120px;
+  display: flex;
+  overflow-y: scroll;
+   scrollbar-width: none; 
+  -ms-overflow-style: none;  
+  background-color: white;
+
+}
+
+.categoryBar::-webkit-scrollbar {
+  display: none; 
+}
+.categoryBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 2px 4px 2px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: white;
+  color: #7a7a7a;
+  font-size: 0.95rem;
+  gap: 4px;
+  
+}
+.categoryIcon{
+  width: 3rem;  
+}
+.categoryBtn span{
+  width: 70px;
+  height: 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-darknavy);
+  letter-spacing: -0.5px;
+  line-height: 14px;
+  overflow: hidden;
+
+}
+
+.activeCategoryBtn {
+  border: 2.5px solid var(--color-orange);
+  border-radius: 6px;
+}
+.categoryDropDownMenu{
+  display: none;
+}
+
+.noProductFound{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid #7a7a7a; */
+  height: 60vh;
+}
+.noProductFound span{
+  padding-top: 90px;
+  padding-bottom: 90px;
+  color: var(--color-darknavy);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+
+}
+.honeybeeGIF{
+  position: absolute;
+  width: 8rem;
+  /* border: 1px solid red; */
+}
+
+
+/* @media (min-width: 768px) and (max-width: 1023px){} */
+@media (min-width: 768px) and (max-width: 1439px){
+  .categoryIcon{
+    display: none;
+  }
+  .categoryBar{
+    padding: 13px 10vw;
+    border: 1px solid blue;
+    max-height: 70px;
+    overflow-x: visible;
+
+  }
+  .categoryDropDownMenu{
+    display: block;
+    z-index: 99999;
+  }
+  .categoryBtn{
+    padding: 6px 28px;
+    border: 1px solid red;
+    border-radius: 6px;
+    height: max-content;
+    border-radius: 25px;
+
+
+  }
+  .categoryBtn span{
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+}
+@media (min-width: 1440px) {
+  .categoryIcon{
+    display: none;
+  }
+  .categoryBar{
+    padding: 13px 10vw;
+    border: 1px solid blue;
+    max-height: 70px;
+    overflow-x: visible;
+
+  }
+  .categoryDropDownMenu{
+    display: block;
+    z-index: 99999;
+  }
+  .categoryBtn{
+    padding: 6px 28px;
+    border: 1px solid red;
+    border-radius: 6px;
+    height: max-content;
+    border-radius: 25px;
+
+
+  }
+  .categoryBtn span{
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .dealsSectionHeader {
+  border: 1px solid red; 
   width: 100vw;
 }
 
@@ -32,15 +228,14 @@
 
 @media (max-width: 768px) {
   .categoryBtn {
-    font-size: 0.85rem; /* slightly smaller for tablets */
-  }
+    font-size: 0.85rem; 
 }
 .noProductFound {
   color: #ff7b00;
   font-size: 1.2rem;
   text-align: center;
   margin: 20px 0 0 0;
-  /* border: 1px solid #ff7b00; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +245,7 @@
   font-weight: 600;
 }
 .honeybeeGIF{
-  /* border: 1px solid #7a7a7a; */
+
   position: absolute;
   width: 200px;
 }
@@ -62,8 +257,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid #7a7a7a; */
+
 }
 .loadingSpinner img {
   width: 150px;
-}
+} */

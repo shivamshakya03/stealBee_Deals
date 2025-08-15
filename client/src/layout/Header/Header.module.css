@@ -1,5 +1,211 @@
 .header {
   width: 100vw;
+  background: transparent;
+  padding: 0.625rem 0.8125rem 0.625rem 0.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out;
+  
+}
+.scrolled {
+  background-color: white;
+
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.headerLogoImg {
+  width: 2.8rem;
+}
+.headerLogotext{
+  width: 6rem;
+
+}
+.headerLogoDesktop{
+  display: none;
+  width: 9rem;
+}
+
+.headerLogoText {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #0B132B;
+  width: 200px;
+  margin-left: 5px;
+  letter-spacing: -1px;
+}
+
+.headerSearch {
+  width: 43vw;
+  display: none;
+}
+
+.headerSearchInput {
+  padding: 8px 12px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.headerSearchInput:focus {
+  background-color: white;
+}
+
+.headerLinks {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+.headerLinks div {
+  font-size: 1rem;
+  color: #4B5563;
+}
+
+
+/* @media (min-width: 768px) and (max-width: 1023px){} */
+@media (min-width: 768px) and (max-width: 1439px){
+.threedotBtn{
+    display: none;
+  }
+  .header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .headerLinks {
+    display: none;
+
+  }
+  .headerLinks div{
+    color: var(--color-darknavy);
+    font-weight: 600;
+  }
+  .header{
+    padding: 0.625rem 3rem 0.625rem 2rem;
+  }
+  .headerLinksItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .headerLinksItemImg{
+    width: 1.67rem;
+  }
+  .headerLinksItemText{
+    font-size: 0.875rem;
+    letter-spacing: -0.5px;
+    margin: -5px;
+  }
+  .headerLogoImg {
+  display: none;
+}
+.headerLogotext{
+  display: none;
+
+}
+.headerLogoDesktop{
+  display: block;
+  width: 9rem;
+  
+}
+}
+@media (min-width: 1440px) {
+  .threedotBtn{
+    display: none;
+  }
+  .header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .headerLinks {
+    display: none;
+
+  }
+  .headerLinks div{
+    color: var(--color-darknavy);
+    font-weight: 600;
+  }
+  .header{
+    padding: 0.625rem 3rem 0.625rem 2rem;
+  }
+  .headerLinksItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .headerLinksItemImg{
+    width: 1.67rem;
+  }
+  .headerLinksItemText{
+    font-size: 0.875rem;
+    letter-spacing: -0.5px;
+    margin: -5px;
+  }
+  .headerLogoImg {
+  display: none;
+}
+.headerLogotext{
+  display: none;
+
+}
+.headerLogoDesktop{
+  display: block;
+  width: 9rem;
+  
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* normal laptop view */
+
+/* .header {
+  width: 100vw;
   background-color: #ffffff;
   padding: 13px 9rem;
   display: flex;
@@ -58,66 +264,4 @@
 }
 .threedot{
   display: none;
-}
-@media (max-width: 412px) {
-  .header {
-  background-color: transparent;
-  padding: 18px 13px 0 15px;
-  align-items: center;
-  justify-content: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-.headerLogo {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-}
-
-.headerLogoImg {
-  width: 1.8rem;
-  /* border: 1px solid black; */
-}
-
-.headerLogoText {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-left: 10px;
-  color: #0B132B;
-  /* border: 1px solid black; */
-  width: 200px;
-  margin-left: 5px;
-}
-
-.headerSearch {
-  display: none;
-}
-.headerLinks {
-  display: none;
-}
-.threedot{
-  width: 2rem;
-  /* image-rendering: crisp-edges; */
-  /* image-rendering: pixelated;  */
-  display:block;
-
-
-}
-
-}
-@media (max-width: 1024px) {
-  
-  .headerLogoText {
-    /* border: 1px solid black; */
-    width: 210px;
-}
-
-  .headerLinks div {
-    width: 110px;
-    /* border: 1px solid black; */
-  }
-}
+} */

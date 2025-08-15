@@ -1,0 +1,22 @@
+
+
+
+/* @media (min-width: 768px) and (max-width: 1023px){} */
+@media (min-width: 768px) and (max-width: 1439px){
+    .productSortContainer {
+        position: absolute;
+        top: 9.8vh;
+        right: 11vw;
+        /* left: 0; */
+        z-index: 99;
+    }
+}
+@media (min-width: 1440px) {
+    .productSortContainer {
+        position: absolute;
+        top: 9.8vh;
+        right: 11vw;
+        /* left: 0; */
+        z-index: 99;
+    }
+}

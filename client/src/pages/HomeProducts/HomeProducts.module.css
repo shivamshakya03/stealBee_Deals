@@ -1,0 +1,13 @@
+
+.autoSliderContainer {
+    /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;  /* take full height of sliderBanner */
+  position: relative; /* keeps child absolute positioning inside */
+  height: max-content;
+}
+.productContainer{
+    /* border: 1px solid black; */
+}
