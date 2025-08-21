@@ -75,5 +75,10 @@ bot.on('message', async (ctx) => {
   }
 });
 
-// Webhook set hoga server.js me
-bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
+
+if (process.env.NODE_ENV !== "production") {
+  bot.launch();
+  console.log("🚀 Bot launched in polling mode (local dev)");
+} else {
+  bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
+}
