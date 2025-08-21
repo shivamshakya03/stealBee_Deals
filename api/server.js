@@ -14,8 +14,10 @@ app.use(express.json());
 // Routes
 app.use('/api', productRoutes);
 
-// Telegram Bot webhook
-app.use(bot.webhookCallback('/telegram-bot'));
+// Telegram Bot webhook (only in production)
+if (process.env.NODE_ENV === 'production') {
+  app.use(bot.webhookCallback('/telegram-bot'));
+}
 
 // Health check
 app.get('/', (req, res) => {
@@ -25,6 +27,15 @@ app.get('/', (req, res) => {
 
 // Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
+
+  if (process.env.NODE_ENV === 'production') {
+    const RENDER_URL = process.env.RENDER_URL;
+    await bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
+    console.log('✅ Webhook set:', `${RENDER_URL}/telegram-bot`);
+  } else {
+    bot.launch();
+    console.log('🤖 Bot started with polling (local dev)');
+  }
 });

@@ -8,7 +8,7 @@ dotenv.config({ path: '../.env' });
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const RENDER_URL = process.env.RENDER_URL;
 
-export const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
+const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
 
 // Handlers
 bot.on('message', async (ctx) => {
@@ -76,9 +76,11 @@ bot.on('message', async (ctx) => {
 });
 
 
-if (process.env.NODE_ENV !== "production") {
-  bot.launch();
-  console.log("🚀 Bot launched in polling mode (local dev)");
-} else {
-  bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
-}
+export { bot };
+
+// if (process.env.NODE_ENV !== "production") {
+//   bot.launch();
+//   console.log("🚀 Bot launched in polling mode (local dev)");
+// } else {
+//   bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
+// }
