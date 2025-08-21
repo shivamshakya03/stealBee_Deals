@@ -3,8 +3,16 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import productRoutes from './routes/productRoutes.js';
 import { bot } from '../telegram-bot/bot.js';
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config({ path: '../.env' }); 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Load .env only in development
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.resolve(__dirname, "../.env") });
+}
+// dotenv.config({ path: '../.env' }); 
 const app = express();
 
 // Middlewares

@@ -3,9 +3,21 @@ import { Telegraf } from 'telegraf';
 import dotenv from 'dotenv';
 import { supabase } from './supabaseClient.js';
 
-dotenv.config({ path: '../.env' });
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Load env only in dev
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.resolve(__dirname, "../.env") });
+}
+
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+if (!TELEGRAM_BOT_TOKEN) {
+  throw new Error("❌ TELEGRAM_BOT_TOKEN is missing! Check env variables.");
+}
 const RENDER_URL = process.env.RENDER_URL;
 
 const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
@@ -13,6 +25,8 @@ const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
 // Handlers
 bot.on('message', async (ctx) => {
   try {
+
+
     const text = ctx.message.caption || ctx.message.text;
     if (!text) return ctx.reply("Please send a valid product format.");
 
@@ -78,9 +92,3 @@ bot.on('message', async (ctx) => {
 
 export { bot };
 
-// if (process.env.NODE_ENV !== "production") {
-//   bot.launch();
-//   console.log("🚀 Bot launched in polling mode (local dev)");
-// } else {
-//   bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
-// }
