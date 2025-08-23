@@ -52,11 +52,13 @@ export default function ProductCard({ product }) {
             <span className={styles.currentPrice}>
               ₹{product.current_price}
             </span>
-            <span className={styles.oldPrice}>₹{product.old_price}</span>
+            <span className={styles.oldPrice}>
+              ₹{product.old_price?.toLocaleString("en-IN")}{" "}
+            </span>
             <span className={styles.discountPricePercent}>
               (-
               {product.discount_percent
-                ? Math.round(product.discount_percent)
+                ? Math.round(product.discount_percent).toLocaleString("en-IN")
                 : 0}
               % OFF)
             </span>
