@@ -50,7 +50,7 @@ export default function ProductCard({ product }) {
           <p className={styles.productDesc}>{product.description}</p>
           <div className={styles.priceSection}>
             <span className={styles.currentPrice}>
-              ₹{product.current_price}
+              ₹{product.current_price?.toLocaleString("en-IN")}
             </span>
             <span className={styles.oldPrice}>
               ₹{product.old_price?.toLocaleString("en-IN")}{" "}
@@ -58,7 +58,7 @@ export default function ProductCard({ product }) {
             <span className={styles.discountPricePercent}>
               (-
               {product.discount_percent
-                ? Math.round(product.discount_percent).toLocaleString("en-IN")
+                ? Math.round(product.discount_percent)
                 : 0}
               % OFF)
             </span>
