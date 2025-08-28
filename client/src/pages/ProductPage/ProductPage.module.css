@@ -1,5 +1,17 @@
-
-
+.retryButton{
+    color: var(--color-orange);
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.retryButton:hover{
+    text-decoration:underline;
+}
 
 /* @media (min-width: 768px) and (max-width: 1023px){} */
 @media (min-width: 768px) and (max-width: 1439px){

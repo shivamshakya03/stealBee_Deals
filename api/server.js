@@ -6,8 +6,10 @@ import { bot } from '../telegram-bot/bot.js';
 import path from "path";
 import { fileURLToPath } from "url";
 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 // Load .env only in development
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: path.resolve(__dirname, "../.env") });
@@ -20,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api', productRoutes);
+app.use('/api/products', productRoutes);
 
 // Telegram Bot webhook (only in production)
 if (process.env.NODE_ENV === 'production') {
@@ -38,11 +40,16 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
 
-  if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
     const RENDER_URL = process.env.RENDER_URL;
-    await bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
-    console.log('✅ Webhook set:', `${RENDER_URL}/telegram-bot`);
+    try {
+      await bot.telegram.setWebhook(`${RENDER_URL}/telegram-bot`);
+      console.log('🤖 Webhook set:', `${RENDER_URL}/telegram-bot`);
+    } catch (err) {
+      console.error("❌ Failed to set webhook:", err);
+    }
   } else {
+    // Local dev fallback: use polling
     bot.launch();
     console.log('🤖 Bot started with polling (local dev)');
   }

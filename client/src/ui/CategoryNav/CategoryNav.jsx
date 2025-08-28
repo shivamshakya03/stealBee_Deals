@@ -6,7 +6,7 @@ import { MobileHeaderCategoryIcons } from "../../utils/tagColorCode.js";
 import ProductSort from "../ProductSort/ProductSort.jsx";
 
 const categories = [
-  "top Deals",
+  "steal Deals",
   "top 5",
   "electronics",
   "fashion",
@@ -23,7 +23,7 @@ const categories = [
   "Meesho",
 ];
 const dropDownCategories = [
-  "top Deals",
+  "steal Deals",
   "top 5",
   "electronics",
   "fashion",
@@ -41,7 +41,7 @@ const dropDownCategories = [
 ];
 
 const laptopVersionCategories = [
-  "top Deals",
+  "steal Deals",
   "electronics",
   "fashion",
   "Appliances",
@@ -69,7 +69,7 @@ export default function CategoryNav() {
   const isMobile = width < 768;
   const categoriesToRender = isMobile ? categories : laptopVersionCategories;
 
-  const [activeCategory, setActiveCategory] = useState("top Deals");
+  const [activeCategory, setActiveCategory] = useState("steal Deals");
 
   // Sync active category with URL param
   useEffect(() => {

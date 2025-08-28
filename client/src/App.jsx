@@ -45,6 +45,8 @@ function App() {
             </ProductPage>
           }
         />
+
+        <Route path="*" element={<pageNotfound />} />
       </Routes>
     </Router>
   );

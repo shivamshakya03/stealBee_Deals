@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
           >
             {product.tag}
           </span>
-          <h3 className={styles.productTitle}>{product.product_name}</h3>
+          <p className={styles.productTitle}>{product.product_name}</p>
           <p className={styles.productDesc}>{product.description}</p>
           <div className={styles.priceSection}>
             <span className={styles.currentPrice}>

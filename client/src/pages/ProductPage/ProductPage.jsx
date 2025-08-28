@@ -8,15 +8,29 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CategoryNav from "../../ui/CategoryNav/CategoryNav";
 import LoadingSpinner from "../../ui/loadingSpinner/LoadingSpinner.jsx";
-import ProductList from "../../product/ProductList/ProductList";
+import ProductList from "../../product/ProductList/ProductList.jsx";
 import {
   fetchProducts,
-  setActiveCategory,
-} from "../../redux/features/products/productSlice";
+  fetchStealDeals,
+  fetchAmazonProducts,
+  fetchFlipkartProducts,
+  fetchMeeshoProducts,
+  fetchProductsByCategory,
+} from "../../redux/features/products/productSlice.js";
 import ProductSort from "../../ui/ProductSort/ProductSort";
+import {
+  selectAllProducts,
+  selectStealDeals,
+  selectAmazonProducts,
+  selectFlipkartProducts,
+  selectMeeshoProducts,
+  selectProductsByCategory,
+  selectProductsLoading,
+  selectProductsError,
+} from "../../redux/features/products/productSelector.js";
 
 const categoryDisplayNames = {
-  topdeals: "Top Deals",
+  stealdeals: "Top Deals",
   top5: "Top 5 Deals",
   electronics: "Electronics & Gadgets",
   appliances: "Homeliving & Appliances",
@@ -37,107 +51,147 @@ const categoryDisplayNames = {
 };
 
 export default function ProductPage() {
-  const [sortOrder, setSortOrder] = useState("");
-  const { categoryName } = useParams();
   const dispatch = useDispatch();
-  const {
-    items: allProducts,
-    loading,
-    activeCategory,
-  } = useSelector((state) => state.products);
+  const [sortOrder, setSortOrder] = useState("");
+  const { categoryName = "topdeals" } = useParams(); // Default to topdeals
 
-  // Fetch products if not loaded
-  useEffect(() => {
-    if (allProducts.length === 0) {
-      dispatch(fetchProducts());
+  // Get loading and error states
+  const loading = useSelector(selectProductsLoading);
+  const error = useSelector(selectProductsError);
+
+  // Helper function to get products based on category
+  const getProductsForCategory = () => {
+    switch (categoryName) {
+      case "topdeals":
+      case "top5":
+        return useSelector(selectAllProducts);
+      case "stealdeals":
+        return useSelector(selectStealDeals);
+      case "topdealsonamazon":
+        return useSelector(selectAmazonProducts);
+      case "topdealsonflipkart":
+        return useSelector(selectFlipkartProducts);
+      case "meesho":
+        return useSelector(selectMeeshoProducts);
+      default:
+        // For regular categories like electronics, fashion, etc.
+        return useSelector(selectProductsByCategory(categoryName));
     }
-  }, [dispatch, allProducts.length]);
+  };
 
-  // Update category & reset sort when category changes
+  const products = getProductsForCategory();
+
+  // Fetch products based on category when component mounts or category changes
   useEffect(() => {
-    dispatch(setActiveCategory(categoryName || "all"));
-    setSortOrder("");
+    const fetchProductsForCategory = () => {
+      switch (categoryName) {
+        case "topdeals":
+        case "top5":
+          dispatch(fetchProducts());
+          break;
+        case "stealdeals":
+          dispatch(fetchStealDeals());
+          break;
+        case "topdealsonamazon":
+          dispatch(fetchAmazonProducts());
+          break;
+        case "topdealsonflipkart":
+          dispatch(fetchFlipkartProducts());
+          break;
+        case "topdealsonmeesho":
+          dispatch(fetchMeeshoProducts());
+          break;
+        default:
+          dispatch(fetchProductsByCategory(categoryName));
+          break;
+      }
+    };
+
+    fetchProductsForCategory();
   }, [dispatch, categoryName]);
 
-  // Helper functions
+  // Sorting helper functions
   const toNum = (v) => (v == null || v === "" ? 0 : Number(v));
   const toDate = (s) =>
     !s ? new Date(0) : new Date(String(s).replace(" ", "T"));
-
-  const getPrice = (p) => toNum(p.current_price ?? p.price);
+  const getPrice = (p) => toNum(p.current_price ?? p.price ?? p.originalPrice);
   const getDiscount = (p) => toNum(p.discount_percent ?? p.discount);
-  const getPopularity = (p) => toNum(p.total_views ?? p.popularity ?? p.views);
-  const getCreatedAt = (p) => toDate(p.created_at ?? p.createdAt);
+  const getPopularity = (p) =>
+    toNum(p.total_views ?? p.popularity ?? p.views ?? p.rating ?? 0);
+  const getCreatedAt = (p) => toDate(p.created_at ?? p.createdAt ?? p.date);
 
-  // Filter & sort logic
-  let filteredProducts = [];
-  const category = activeCategory?.toLowerCase();
+  // Apply sorting to products
+  const getSortedProducts = () => {
+    if (!products || !Array.isArray(products)) return [];
 
-  if (category === "topdeals") {
-    filteredProducts = allProducts.filter((p) => getDiscount(p) > 0);
-    filteredProducts.sort((a, b) => getDiscount(b) - getDiscount(a));
-  } else if (["amazon", "flipkart", "meesho"].includes(category)) {
-    filteredProducts = allProducts.filter(
-      (p) => p.store_name?.toLowerCase() === category
+    let sortedProducts = [...products];
+
+    // For "top5" category, limit to 5 products
+    if (categoryName === "top5") {
+      sortedProducts = sortedProducts.slice(0, 5);
+    }
+
+    if (sortOrder) {
+      sortedProducts.sort((a, b) => {
+        switch (sortOrder) {
+          case "priceLowToHigh":
+            return getPrice(a) - getPrice(b);
+          case "priceHighToLow":
+            return getPrice(b) - getPrice(a);
+          case "discountHighToLow":
+            return getDiscount(b) - getDiscount(a);
+          case "popularity":
+            return getPopularity(b) - getPopularity(a);
+          case "newestArrivals":
+            return getCreatedAt(b) - getCreatedAt(a);
+          default:
+            return 0;
+        }
+      });
+    }
+
+    return sortedProducts;
+  };
+
+  const sortedProducts = getSortedProducts();
+  const title = categoryDisplayNames[categoryName] || "Products";
+
+  // Handle error state
+  if (error) {
+    return (
+      <div className={styles.productPage}>
+        <ProductPageHeader title={title} productCount={0} />
+        <CategoryNav />
+        <div className={styles.errorContainer}>
+          <div className={styles.error}>
+            <LoadingSpinner message={` Error loading products: ${error}`} />
+
+            <button
+              onClick={() => window.location.reload()}
+              className={styles.retryButton}
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+        <SubscribeSection />
+        <Footer />
+      </div>
     );
-  } else if (category === "topdealsonamazon") {
-    filteredProducts = allProducts.filter(
-      (p) => p.store_name?.toLowerCase() === "amazon" && getDiscount(p) > 0
-    );
-    filteredProducts.sort((a, b) => getDiscount(b) - getDiscount(a));
-  } else if (category === "topdealsonflipkart") {
-    filteredProducts = allProducts.filter(
-      (p) => p.store_name?.toLowerCase() === "flipkart" && getDiscount(p) > 0
-    );
-    filteredProducts.sort((a, b) => getDiscount(b) - getDiscount(a));
-  } else if (category === "topdealsonmeesho") {
-    filteredProducts = allProducts.filter(
-      (p) => p.store_name?.toLowerCase() === "meesho" && getDiscount(p) > 0
-    );
-    filteredProducts.sort((a, b) => getDiscount(b) - getDiscount(a));
-  } else {
-    filteredProducts =
-      category === "all"
-        ? allProducts
-        : allProducts.filter((p) => p.tag?.toLowerCase() === category);
   }
-
-  // Apply user-selected sort
-  if (sortOrder) {
-    filteredProducts = [...filteredProducts].sort((a, b) => {
-      switch (sortOrder) {
-        case "priceLowToHigh":
-          return getPrice(a) - getPrice(b);
-        case "priceHighToLow":
-          return getPrice(b) - getPrice(a);
-        case "discountHighToLow":
-          return getDiscount(b) - getDiscount(a);
-        case "popularity":
-          return getPopularity(b) - getPopularity(a);
-        case "newestArrivals":
-          return getCreatedAt(b) - getCreatedAt(a);
-        default:
-          return 0;
-      }
-    });
-  }
-
-  const title = categoryDisplayNames[category] || activeCategory || "Products";
 
   return (
     <div className={styles.productPage}>
-      <ProductPageHeader title={title} productCount={filteredProducts.length} />
-
+      <ProductPageHeader title={title} productCount={sortedProducts.length} />
       <CategoryNav />
-
       <div className={styles.productSortContainer}>
-        <ProductSort onSortChange={setSortOrder} />
+        <ProductSort onSortChange={setSortOrder} currentSort={sortOrder} />
       </div>
 
       {loading ? (
         <LoadingSpinner message="Loading products..." />
       ) : (
-        <ProductList products={filteredProducts} title={title} />
+        <ProductList products={sortedProducts} title={title} />
       )}
 
       <SubscribeSection />

@@ -46,7 +46,7 @@ export const categoryIcons = {
 };
 
 export const MobileHeaderCategoryIcons = {
-  topdeals: "/CategoriesIcon/TopDeals.svg", 
+  stealdeals: "/CategoriesIcon/TopDeals.svg", 
   top5: "/CategoriesIcon/Top5.svg", 
   electronics: "/CategoriesIcon/Electronics.svg",
   fashion: "/CategoriesIcon/Fashion.svg",

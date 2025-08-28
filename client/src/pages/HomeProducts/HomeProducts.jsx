@@ -3,25 +3,60 @@ import styles from "./HomeProducts.module.css";
 import AutoSlider from "../../ui/AutoSlider/AutoSlider";
 import DealsSection from "../../ui/DealSections/DealsSection";
 import { useDispatch, useSelector } from "react-redux";
-import HomeProductGrid from "../../ui/HomeProductUI/HomeProductGrid";
-import { fetchProducts } from "../../redux/features/products/productSlice";
-import LoadingSpinner from "../../ui/loadingSpinner/LoadingSpinner";
+import HomeProductGrid from "../../ui/HomeProductUI/HomeProductGrid.jsx";
+import LoadingSpinner from "../../ui/loadingSpinner/LoadingSpinner.jsx";
+
+// import selectors (correct names)
+import {
+  selectAllProducts, // was: selectProducts
+  selectProductsLoading, // was: selectLoading
+  selectProductsError, // was: selectError
+  selectAmazonProducts,
+  selectFlipkartProducts,
+  selectMeeshoProducts,
+} from "../../redux/features/products/productSelector.js";
+
+import {
+  fetchProducts,
+  fetchAmazonProducts,
+  fetchFlipkartProducts,
+  fetchMeeshoProducts,
+} from "../../redux/features/products/productSlice.js";
 
 export default function HomeProducts() {
   const dispatch = useDispatch();
-  const {
-    items: products,
-    loading,
-    error,
-  } = useSelector((state) => state.products);
+
+  // use selectors
+  const products = useSelector(selectAllProducts); // used to check if we need to fetch
+  const loading = useSelector(selectProductsLoading);
+  const error = useSelector(selectProductsError);
+
+  const amazonProducts = useSelector(selectAmazonProducts);
+  const flipkartProducts = useSelector(selectFlipkartProducts);
+  const meeshoProducts = useSelector(selectMeeshoProducts);
 
   // Fetch products on mount if not already loaded
   useEffect(() => {
-    if (products.length === 0) {
+    // Fetch general products
+    if (!products || products.length === 0) {
       dispatch(fetchProducts());
     }
-  }, [dispatch, products.length]);
-  // Optional loading / error states
+
+    // Fetch store-specific products for homepage sections
+    if (!amazonProducts || amazonProducts.length === 0) {
+      dispatch(fetchAmazonProducts());
+    }
+
+    if (!flipkartProducts || flipkartProducts.length === 0) {
+      dispatch(fetchFlipkartProducts());
+    }
+
+    if (!meeshoProducts || meeshoProducts.length === 0) {
+      dispatch(fetchMeeshoProducts());
+    }
+  }, [dispatch]);
+
+  // Loading / error states
   if (loading) {
     return <LoadingSpinner message="Loading products..." />;
   }
@@ -30,24 +65,13 @@ export default function HomeProducts() {
     return <LoadingSpinner message={`Error: ${error}`} />;
   }
 
-  // Filter by store_name
-  const amazonProducts = products.filter(
-    (p) => p.store_name?.toLowerCase() === "amazon"
-  );
-  const flipkartProducts = products.filter(
-    (p) => p.store_name?.toLowerCase() === "flipkart"
-  );
-  const meeshoProducts = products.filter(
-    (p) => p.store_name?.toLowerCase() === "meesho"
-  );
+  {
+    console.log(amazonProducts.length, flipkartProducts.length);
+  }
 
   return (
     <section className={styles.homeProducts}>
-      {/* Auto slider if needed */}
-      {/* <div className={styles.autoSliderContainer}>
-        <AutoSlider />
-      </div> */}
-
+      {/* Amazon */}
       <div className={styles.productContainer}>
         {amazonProducts.length > 0 && (
           <HomeProductGrid
@@ -58,6 +82,7 @@ export default function HomeProducts() {
         )}
       </div>
 
+      {/* Flipkart */}
       <div className={styles.productContainer}>
         {flipkartProducts.length > 0 && (
           <HomeProductGrid
@@ -68,6 +93,7 @@ export default function HomeProducts() {
         )}
       </div>
 
+      {/* Meesho */}
       <div className={styles.productContainer}>
         {meeshoProducts.length > 0 && (
           <HomeProductGrid
@@ -77,18 +103,21 @@ export default function HomeProducts() {
           />
         )}
       </div>
+
+      {/* Fallback: Show general products if store-specific ones aren't available */}
+      {(!amazonProducts || amazonProducts.length === 0) &&
+        (!flipkartProducts || flipkartProducts.length === 0) &&
+        (!meeshoProducts || meeshoProducts.length === 0) &&
+        products &&
+        products.length > 0 && (
+          <div className={styles.productContainer}>
+            <HomeProductGrid
+              title="Featured Products"
+              products={products.slice(0, 12)} // Limit to first 12 products
+              viewMoreLink="/products/stealdeals"
+            />
+          </div>
+        )}
     </section>
   );
 }
-
-// /products/amazon → all Amazon products.
-
-// /products/flipkart → all Flipkart products.
-
-// /products/meesho → all Meesho products.
-
-// /products/topdealsonamazon → only Amazon products with discounts, sorted high → low.
-
-// /products/topdealsonflipkart → only Flipkart products with discounts.
-
-// /products/topdealsonmeesho → only Meesho products with discounts.
