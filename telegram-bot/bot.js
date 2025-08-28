@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 // Load env only in dev
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: path.resolve(__dirname, "../.env") });
@@ -18,7 +19,7 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 if (!TELEGRAM_BOT_TOKEN) {
   throw new Error("❌ TELEGRAM_BOT_TOKEN is missing! Check env variables.");
 }
-const RENDER_URL = process.env.RENDER_URL;
+
 
 const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
 
