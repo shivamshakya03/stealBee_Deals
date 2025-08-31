@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllProducts, getProductsByCategories } from "../controller/productController.js";
+import { getAllProducts, getProductsByCategories, trackProductClick} from "../controller/productController.js";
 
 const router = express.Router();
 
@@ -17,6 +17,10 @@ router.get("/categories/:category", getProductsByCategories);
 // GET /categories/fashion 
 // GET /categories/electronics
 
+
+
+// POST /api/products/:id/click
+router.post("/:id/click", trackProductClick);
 
 
 

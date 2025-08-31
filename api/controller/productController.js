@@ -86,3 +86,40 @@ export const getProductsByCategories = async (req, res) => {
     return res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
+
+
+// Increment total_clicks for a product
+export const trackProductClick = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Step 1: Fetch current clicks
+    const { data: product, error: fetchError } = await supabase
+      .from("products")
+      .select("total_clicks")
+      .eq("id", id)
+      .single();
+
+    if (fetchError || !product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    const newClicks = (product.total_clicks || 0) + 1;
+
+    // Step 2: Update clicks
+    const { error: updateError } = await supabase
+      .from("products")
+      .update({ total_clicks: newClicks })
+      .eq("id", id);
+
+    if (updateError) {
+      return res.status(500).json({ error: updateError.message });
+    }
+
+    res.json({ success: true, productId: id, total_clicks: newClicks });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+};

@@ -6,11 +6,29 @@ import {
 } from "../../utils/tagColorCode.js";
 import styles from "./ProductCard.module.css";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 export default function ProductCard({ product }) {
   // Early return if no product yet
   if (!product) {
     return null; // or a loading skeleton
   }
+
+  const handleBuyClick = async () => {
+    try {
+      // Track click in backend
+      await fetch(`${API_BASE_URL}/products/${product.id}/click`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      // Redirect to affiliate link
+      window.open(product.affiliate_link, "_blank");
+    } catch (err) {
+      console.error("Error tracking click:", err);
+    }
+  };
+
   return (
     <article>
       <div className={styles.productCard}>
@@ -69,14 +87,14 @@ export default function ProductCard({ product }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div className={styles.buyBtn}>
+            <button onClick={handleBuyClick} className={styles.buyBtn}>
               <img
                 src="/trolley.png"
                 alt="Shopping trolley"
                 className={styles.shoppingTrolleyIcon}
               />
               <span>Buy Now</span>
-            </div>
+            </button>
           </a>
 
           {/* <div className={styles.storeBadge}>
@@ -91,12 +109,3 @@ export default function ProductCard({ product }) {
     </article>
   );
 }
-
-// Product_Name: Nike Air Shoes
-// description: Lightweight running shoes
-// image_url: https://example.com/shoes.jpg
-// current_price: 2999
-// old_price: 3999
-// store_name: Nike Official Store
-// tag: fashion
-// affiliated_link: https://amzn.to/something
