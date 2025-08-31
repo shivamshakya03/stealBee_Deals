@@ -5,6 +5,7 @@ import productRoutes from './routes/productRoutes.js';
 import { bot } from '../telegram-bot/bot.js';
 import path from "path";
 import { fileURLToPath } from "url";
+import visitorRoutes from "./routes/visitorsRoutes.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +24,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/products', productRoutes);
+app.use("/api/visitors", visitorRoutes);
 
 // Telegram Bot webhook (only in production)
 if (process.env.NODE_ENV === 'production') {
