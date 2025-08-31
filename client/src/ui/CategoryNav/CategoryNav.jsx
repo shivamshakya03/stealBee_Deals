@@ -18,9 +18,9 @@ const categories = [
   "books",
   "automotive",
   "music",
-  "Amazon",
-  "Flipkart",
-  "Meesho",
+  "amazon",
+  "flipkart",
+  "meesho",
 ];
 const dropDownCategories = [
   "steal Deals",

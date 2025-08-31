@@ -77,7 +77,7 @@ export default function HomeProducts() {
           <HomeProductGrid
             title="Amazon"
             products={amazonProducts}
-            viewMoreLink="/products/amazon"
+            viewMoreLink="/products/topdealsonamazon"
           />
         )}
       </div>
@@ -88,7 +88,7 @@ export default function HomeProducts() {
           <HomeProductGrid
             title="Flipkart"
             products={flipkartProducts}
-            viewMoreLink="/products/flipkart"
+            viewMoreLink="/products/topdealsonflipkart"
           />
         )}
       </div>
@@ -99,7 +99,7 @@ export default function HomeProducts() {
           <HomeProductGrid
             title="Meesho"
             products={meeshoProducts}
-            viewMoreLink="/products/meesho"
+            viewMoreLink="/products/topdealsonmeesho"
           />
         )}
       </div>

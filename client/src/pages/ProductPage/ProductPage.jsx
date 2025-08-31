@@ -69,8 +69,14 @@ export default function ProductPage() {
         return useSelector(selectStealDeals);
       case "topdealsonamazon":
         return useSelector(selectAmazonProducts);
+      case "amazon":
+        return useSelector(selectAmazonProducts);
       case "topdealsonflipkart":
         return useSelector(selectFlipkartProducts);
+      case "flipkart":
+        return useSelector(selectFlipkartProducts);
+      case "topdealsonmeesho":
+        return useSelector(selectMeeshoProducts);
       case "meesho":
         return useSelector(selectMeeshoProducts);
       default:
@@ -95,10 +101,19 @@ export default function ProductPage() {
         case "topdealsonamazon":
           dispatch(fetchAmazonProducts());
           break;
+        case "amazon":
+          dispatch(fetchAmazonProducts());
+          break;
         case "topdealsonflipkart":
           dispatch(fetchFlipkartProducts());
           break;
+        case "flipkart":
+          dispatch(fetchFlipkartProducts());
+          break;
         case "topdealsonmeesho":
+          dispatch(fetchMeeshoProducts());
+          break;
+        case "meesho":
           dispatch(fetchMeeshoProducts());
           break;
         default:

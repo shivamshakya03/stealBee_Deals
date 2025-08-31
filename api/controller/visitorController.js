@@ -1,4 +1,3 @@
-
 import { supabase } from "../config/supabaseClient.js";//  DB connection
 
 // ✅ Track a visitor
@@ -50,9 +49,6 @@ export const getUniqueVisitors = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch unique visitors" });
   }
 };
-
-
-
 
 // ✅ Track a visit
 export const trackVisit = async (req, res) => {
