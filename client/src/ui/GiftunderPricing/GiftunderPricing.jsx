@@ -59,7 +59,7 @@ function GiftCard({ gift }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 2000); // change every 2s
+    }, 1000); // change every 2s
     return () => clearInterval(interval);
   }, [images.length]);
 
