@@ -34,6 +34,7 @@ const categoryDisplayNames = {
   top5: "Top 5 Deals",
   electronics: "Electronics & Gadgets",
   appliances: "Homeliving & Appliances",
+  gifts: "Festive Gifts",
   sports: "Sports & Outdoors",
   fashion: "Fashion & Accessories",
   fitness: "Health & Fitness",

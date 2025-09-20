@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  height: 155px;
+  /* border: 1px solid black; */
+  /* background-color: #e0e7e8; */
+  background-color: transparent;
+  display: flex;
+  padding: 1px 10px;
+  justify-content: flex-start;  /* cards left se start hon */
+  align-items: center;
+  overflow-x: auto;   /* horizontal scroll */
+  overflow-y: hidden; /* vertical scroll band */
+  gap: 15px;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 40%,   /* bottom 40% white */
+    rgba(255, 255, 255, 0) 100%   /* fade to transparent */
+  );
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.card {
+  width: 90px;
+  height: 140px;
+  /* border: 1px solid black; */
+  flex-shrink: 0;       /* important -> prevent shrinking */
+  border-radius: 10px;
+  background: white;
+}
+
+.cardimg{
+     width: 90px;
+  height: 110px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.card p {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: -0.6px;
+    text-align: center;
+    line-height: 13px;
+    margin-top: 8px;
+    color: var(--color-darknavy);
+}

@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import styles from "./HomeProducts.module.css";
-import AutoSlider from "../../ui/AutoSlider/AutoSlider";
-import DealsSection from "../../ui/DealSections/DealsSection";
 import { useDispatch, useSelector } from "react-redux";
 import HomeProductGrid from "../../ui/HomeProductUI/HomeProductGrid.jsx";
 import LoadingSpinner from "../../ui/loadingSpinner/LoadingSpinner.jsx";
@@ -63,10 +61,6 @@ export default function HomeProducts() {
 
   if (error) {
     return <LoadingSpinner message={`Error: ${error}`} />;
-  }
-
-  {
-    console.log(amazonProducts.length, flipkartProducts.length);
   }
 
   return (

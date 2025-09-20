@@ -123,3 +123,31 @@ export const trackProductClick = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+
+// GET /api/products/topTendiscounts
+export const getTopTenDiscountedProducts = async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("discount_percent", { ascending: false }) // highest first
+      .limit(10); // only top 10
+
+
+
+    if (error) {
+      console.error("❌ Supabase error:", error);
+      return res.status(500).json({ success: false, error });
+    }
+
+    return res.status(200).json({
+      success: true,
+      count: data.length,
+      products: data,
+    });
+  } catch (err) {
+    console.error("❌ Server error:", err);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};

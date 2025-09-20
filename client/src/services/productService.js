@@ -46,6 +46,9 @@ const productService = {
 
   // GET /api/products/search?q=query
   search: (query) => request(() => apiClient.get("/products/search", { params: { q: query } })),
+
+  //GET /api/products.toptenDiscounts
+  getTopDiscounts: () => request(() => apiClient.get("/products/topten-discounts"))
 };
 
 export default productService;

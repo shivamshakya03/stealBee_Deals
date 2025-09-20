@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+
+/* === Global Swiper overrides === */
+
+/* Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  color: rgba(140, 140, 140, 0.607) !important;
+  opacity: 0.6 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  opacity: 1 !important;
+}
+
+/* Dots */
+.swiper-pagination-bullet {
+  background: rgb(191, 191, 191) !important;
+  opacity: 0.4 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: grey !important;
+  opacity: 1 !important;
+}

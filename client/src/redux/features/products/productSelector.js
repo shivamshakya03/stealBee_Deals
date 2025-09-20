@@ -49,3 +49,8 @@ export const selectProductsError = createSelector(
   [selectProductsState],
   (products) => products.error
 );
+
+export const selectToptenDiscounts = createSelector(
+  [selectProductsState],
+  (products) => products.toptenDiscounts
+);

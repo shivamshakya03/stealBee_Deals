@@ -51,9 +51,10 @@ export const MobileHeaderCategoryIcons = {
   electronics: "/CategoriesIcon/Electronics.svg",
   fashion: "/CategoriesIcon/Fashion.svg",
   appliances: "/CategoriesIcon/Home.svg",   
+  gifts: "/CategoriesIcon/giftscategory.png",   
   fitness: "/CategoriesIcon/Fitness.svg", 
   sports: "/CategoriesIcon/Sports.svg",
-  beauty: "/CategoriesIcon/Home.svg",    //
+  beauty: "/CategoriesIcon/beautycategory.webp",    //
   toys: "/CategoriesIcon/Toys.svg",   
   books: "/CategoriesIcon/Books.svg",
   automotive: "/CategoriesIcon/Automotive.svg",

@@ -107,6 +107,18 @@ export const searchProducts = createAsyncThunk(
   }
 );
 
+export const fetchToptenDiscounts = createAsyncThunk(
+  "products/topten-discounts",
+  async (_, {rejectWithValue}) => {
+    try{
+      const response = await productService.getTopDiscounts();
+      return response.products || response;
+    } catch(err) {
+      return rejectWithValue(err.message || "Failed to fetch top Discounts")
+    }
+  }
+)
+
 
 
 
@@ -119,10 +131,11 @@ const productSlice = createSlice({
     amazon: [],
     flipkart: [],
     meesho: [],
+    toptenDiscounts: [],
     categories: {},
     selectedProduct: null,
     searchResults: [],
-    loading: false,
+    loading: false, 
     error: null,
   },
   reducers: {
@@ -255,7 +268,23 @@ const productSlice = createSlice({
       .addCase(searchProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || action.error.message;
-      });
+      })
+
+      // Top Discounts
+      .addCase(fetchToptenDiscounts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchToptenDiscounts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.toptenDiscounts = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchToptenDiscounts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || action.error.message;
+      })
+
   },
 });
 

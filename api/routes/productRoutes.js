@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllProducts, getProductsByCategories, trackProductClick} from "../controller/productController.js";
+import { getAllProducts, getProductsByCategories, getTopTenDiscountedProducts, trackProductClick } from "../controller/productController.js";
 
 const router = express.Router();
 
@@ -18,9 +18,14 @@ router.get("/categories/:category", getProductsByCategories);
 // GET /categories/electronics
 
 
+// for top ten discounted products for home page StealDeals Section
+router.get("/topten-discounts", getTopTenDiscountedProducts);
+
 
 // POST /api/products/:id/click
 router.post("/:id/click", trackProductClick);
+
+
 
 
 

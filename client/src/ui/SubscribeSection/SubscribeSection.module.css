@@ -1,7 +1,8 @@
 .subscribeSection {
-  /* background-color: #f9741665;  */
-  background-color: #FFE4B5; 
-  /* background-color: #F0E68C;  */
+  
+  background-color: #0005060c; 
+  /* background-color: #FFE4B5;  */
+
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -13,6 +14,8 @@
   font-weight: 600;
   margin: 0;
   color: var(--color-darknavy);
+  /* color:white;
+  color:white; */
   letter-spacing: -1.5px;
   
 }
@@ -21,8 +24,10 @@
   margin-top: 8px;
   font-size: 1rem;
   color: var(--color-darknavy);
-  letter-spacing: -0.5px;
+  /* color:white; */
+  letter-spacing: -1px;
   line-height: 1.2rem;
+  /* font-weight: 500; */
 }
 
 .formContainer {
@@ -45,6 +50,7 @@
 
 .formContainer button {
   background-color: #0a174e;
+  /* background-color: #0B132B; */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -63,7 +69,12 @@
 .subscribeEmail {
   border: 1px solid white;
 }
-
+.subscribeEmail::placeholder{
+  color: var(--color-darknavy);
+  /* font-weight: 500; */
+  letter-spacing: -1px;
+  /* font-size: 15px; */
+}
 @media (max-width: 500px) {
   .formContainer {
     flex-direction: column;

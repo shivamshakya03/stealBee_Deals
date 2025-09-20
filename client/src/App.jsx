@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  ScrollRestoration,
+} from "react-router-dom";
 import MainLayout from "./layout/MainLayout.jsx";
 import ProductList from "./product/ProductList/ProductList.jsx";
 import CategoryNav from "./ui/CategoryNav/CategoryNav.jsx";
@@ -11,6 +16,12 @@ import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { useState } from "react";
+import HomeAutoSlider from "./ui/HomeAutoSlider/HomeAutoSlider.jsx";
+import GiftunderPricing from "./ui/GiftunderPricing/GiftunderPricing.jsx";
+import StealDeals from "./ui/StealDeals/StealDeals.jsx";
+import Banner from "./ui/OtherEcommWebBanner/Banner.jsx";
+import ScrollToTop from "./ui/ScrollToTop/ScrollToTop.jsx";
+import UseIsMobile from "./layout/UseIsMobile.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -72,6 +83,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Home with MainLayout */}
         <Route
@@ -80,6 +92,14 @@ function App() {
             <MainLayout>
               <HeroSection />
               <CategoryNav />
+              {UseIsMobile() && (
+                <>
+                  <HomeAutoSlider />
+                  <GiftunderPricing />
+                  <StealDeals />
+                  <Banner />
+                </>
+              )}
               <HomeProducts />
               <SubscribeSection />
             </MainLayout>
