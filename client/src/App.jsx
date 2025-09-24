@@ -22,6 +22,7 @@ import StealDeals from "./ui/StealDeals/StealDeals.jsx";
 import Banner from "./ui/OtherEcommWebBanner/Banner.jsx";
 import ScrollToTop from "./ui/ScrollToTop/ScrollToTop.jsx";
 import UseIsMobile from "./layout/UseIsMobile.jsx";
+import FlipkartBanner from "./ui/FlipkartBanner/FlipkartBanner.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -96,6 +97,7 @@ function App() {
                 <>
                   <HomeAutoSlider />
                   <GiftunderPricing />
+                  <FlipkartBanner />
                   <StealDeals />
                   <Banner />
                 </>

@@ -20,47 +20,48 @@ export default function HomeAutoSlider() {
   const mobileImages = [
     {
       src: "HomeSlider/homebannerphone1.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone2.jpg",
-      link: "/products/topdealsonamazon",
+
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone3.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone4.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone5.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone6.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone7.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone8.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone9.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone10.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
     {
       src: "/HomeSlider/homebannerphone11.jpg",
-      link: "/products/topdealsonamazon",
+      link: "https://bitli.in/ZufjDbW",
     },
   ];
 
